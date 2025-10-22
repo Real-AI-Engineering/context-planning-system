@@ -22,8 +22,11 @@ Thumbs.db
 # Skill packages (generated)
 *.zip
 
-# Projects directory (contains external repositories)
-projects/
+# Projects directory (user's own projects)
+# Keep example for documentation
+projects/*
+!projects/.gitkeep
+!projects/README.md
 
 # State files (optional - comment out if you want to track them)
 # state/backlog.yaml

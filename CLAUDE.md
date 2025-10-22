@@ -45,15 +45,21 @@ Tasks follow Speckit checkbox format:
 
 ## Project Structure
 
+The system supports flexible project organization:
+
 ```
 projects/
-├── org-name/
-│   └── repo-name/
-│       └── specs/
-│           ├── tasks.md
-│           └── checklists/
-│               └── feature.md
+├── my-project/
+│   └── specs/
+│       └── tasks.md
+├── another-project/
+│   └── specs/
+│       └── tasks.md
+└── (any structure you prefer)
 ```
+
+**Note:** The scanner recursively finds `tasks.md` files at any depth.
+See `projects/README.md` for structure options.
 
 ## Important Notes
 

@@ -35,9 +35,9 @@ Load backlog and carryover with validation:
 ```yaml
 generated_at: "2025-10-22T09:00:00+00:00"
 items:
-  - uid: "org/repo#T101"
-    project: "org/repo"
-    file: "projects/org/repo/specs/feature/tasks.md"
+  - uid: "my-project#T101"
+    project: "my-project"
+    file: "projects/my-project/specs/feature/tasks.md"
     line: 42
     id: "T101"
     title: "Implement user authentication"
@@ -52,9 +52,9 @@ items:
 ```yaml
 date: "2025-10-21"
 items:
-  - uid: "org/repo#T101"
+  - uid: "my-project#T101"
     title: "Complete authentication tests"
-    project: "org/repo"
+    project: "my-project"
     priority: "P1"
     reason: "blocked_by_external"
     original_date: "2025-10-20"
@@ -195,9 +195,9 @@ Update the daily report with completed sections:
 ## EoD — Summary
 
 **Completed:**
-- [X] T101 Implement user authentication (org/repo)
-- [X] T250 Fix login button styling (org/repo2)
-- [ ] T251 Add password reset flow (org/repo) ← Incomplete
+- [X] T101 Implement user authentication (my-project)
+- [X] T250 Fix login button styling (my-project2)
+- [ ] T251 Add password reset flow (my-project) ← Incomplete
 
 **Decisions/Insights:**
 - Decided to use OAuth2 instead of custom auth for better security

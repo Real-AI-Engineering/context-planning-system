@@ -51,15 +51,27 @@ goals:
 
 ### 3. Set Up Projects
 
-Create your project structure:
+Create your project structure (flexible - choose what works for you):
 
 ```bash
+# Option 1: Simple structure
 projects/
-├── org-name/
-│   └── repo-name/
-│       └── specs/
-│           └── tasks.md
+├── my-app/
+│   └── specs/tasks.md
+└── website/
+    └── specs/tasks.md
+
+# Option 2: With organization (for multiple clients/orgs)
+projects/
+├── client-a/
+│   └── project-x/
+│       └── specs/tasks.md
+└── personal/
+    └── hobby-project/
+        └── specs/tasks.md
 ```
+
+See `projects/README.md` for more examples and best practices.
 
 ### 4. Use the Skills
 
@@ -92,9 +104,14 @@ context-planning-system/
 │   └── weekly/          # Weekly reviews
 ├── templates/           # Report templates
 ├── scripts/             # Automation scripts
-├── projects/            # Your projects (gitignored)
+├── projects/            # Your projects - flexible structure!
+│   ├── README.md        # Structure examples and best practices
+│   └── (your projects)  # Add any structure you want
 └── BaseContext.yaml     # Configuration
 ```
+
+**Your Projects:** The `projects/` directory is flexible - organize however you like!
+See `projects/README.md` for structure options and examples.
 
 ## Skills
 

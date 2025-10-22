@@ -26,9 +26,10 @@ Do not use this skill when:
 
 ### Task Collection Process
 
-1. **Discover task files** recursively under `projects/*/*/specs/`:
-   - Primary: `tasks.md` files
+1. **Discover task files** recursively in `projects/` directory:
+   - Primary: `tasks.md` files (at any depth)
    - Optional: `checklists/**/*.md` files (if configured)
+   - Works with any project structure you prefer
 
 2. **Parse checkboxes** from discovered files:
    - Open tasks: `- [ ] Task description`
@@ -44,9 +45,9 @@ Do not use this skill when:
    ```yaml
    generated_at: "ISO-8601 timestamp"
    items:
-     - uid: "org/repo#T101"
-       project: "org/repo"
-       file: "projects/org/repo/specs/feature/tasks.md"
+     - uid: "my-project#T101"
+       project: "my-project"
+       file: "projects/my-project/specs/tasks.md"
        line: 42
        id: "T101"
        title: "Task description"
@@ -56,6 +57,8 @@ Do not use this skill when:
          section: "Feature Name"
          subsection: "Phase 1"
    ```
+
+**Note:** Project names are derived from the directory structure automatically.
 
 ### Using the Bundled Script
 
@@ -76,8 +79,8 @@ The script automatically:
 ### Task ID and UID Generation
 
 - **Explicit IDs**: Tasks with `T\d+` pattern use that as ID
-- **Implicit UIDs**: Tasks without IDs get hash-based UID from `org/repo#path:line:title`
-- **Project prefix**: All UIDs include `org/repo#` for cross-project uniqueness
+- **Implicit UIDs**: Tasks without IDs get hash-based UID from `project#path:line:title`
+- **Project prefix**: All UIDs include `project#` for cross-project uniqueness
 
 ### Priority Detection
 
@@ -90,7 +93,7 @@ Priority is determined in order:
 
 When user requests `/ctx.scan`:
 
-1. Verify `projects/` contains org/repo subdirectories
+1. Verify `projects/` contains your project directories
 2. Execute `scripts/scan_tasks.py` or implement inline scanning
 3. Report summary: "Scanned X files, found Y tasks (Z open, W done)"
 4. Confirm `state/backlog.yaml` has been updated
