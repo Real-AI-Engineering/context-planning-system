@@ -38,6 +38,7 @@ STATE_DIR = CTX_DIR / "state"
 # Task parsing patterns
 TASK_ID_PATTERN = re.compile(r"\bT(\d+)\b")
 PRIORITY_PATTERN = re.compile(r"\b(P[123])\b")
+PRIORITY_BRACKET_PATTERN = re.compile(r"\[P\]")  # Speckit format: [P] means P1
 CHECKBOX_PATTERN = re.compile(r"^\s*-\s*\[(?P<mark>[ Xx])\]\s*(?P<title>.+)$")
 
 class TaskScanner:
@@ -82,26 +83,37 @@ class TaskScanner:
                     continue
 
                 repo = repo_dir.name
-                specs_dir = repo_dir / "specs"
 
-                if not specs_dir.exists():
-                    self.log(f"No specs directory for {org}/{repo}", "DEBUG")
+                # Support both formats: specs/ (context-planning) and .specify/ (Speckit)
+                task_dirs = []
+                specs_dir = repo_dir / "specs"
+                specify_dir = repo_dir / ".specify"
+
+                if specs_dir.exists():
+                    task_dirs.append(specs_dir)
+                if specify_dir.exists():
+                    task_dirs.append(specify_dir)
+
+                if not task_dirs:
+                    self.log(f"No specs or .specify directory for {org}/{repo}", "DEBUG")
                     continue
 
-                # Walk specs directory recursively
-                for root, dirs, files in os.walk(specs_dir):
-                    # Skip hidden directories
-                    dirs[:] = [d for d in dirs if not d.startswith(".")]
+                # Walk all task directories recursively
+                for task_dir in task_dirs:
+                    for root, dirs, files in os.walk(task_dir):
+                        # Skip hidden directories except .specify
+                        dirs[:] = [d for d in dirs if not d.startswith(".") or d == ".specify"]
 
-                    for filename in files:
-                        if filename.lower() == "tasks.md":
-                            file_path = Path(root) / filename
-                            yield org, repo, file_path
+                        for filename in files:
+                            if filename.lower() == "tasks.md":
+                                file_path = Path(root) / filename
+                                yield org, repo, file_path
 
     @staticmethod
     def extract_priority(text: str) -> str:
         """
         Extract priority marker from text.
+        Supports both P1/P2/P3 and [P] (Speckit format, where [P] = P1).
 
         Args:
             text: Text to search (task line or heading)
@@ -109,6 +121,11 @@ class TaskScanner:
         Returns:
             Priority string (P1, P2, P3) or default P2
         """
+        # Check for [P] first (Speckit format)
+        if PRIORITY_BRACKET_PATTERN.search(text):
+            return "P1"
+
+        # Check for P1/P2/P3
         match = PRIORITY_PATTERN.search(text)
         return match.group(1) if match else "P2"
 

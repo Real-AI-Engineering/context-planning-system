@@ -16,14 +16,25 @@ This system helps manage multiple projects through:
 
 ## Features
 
-✅ Professional English documentation
-✅ Robust error handling and logging
-✅ CLI with verbose mode
-✅ Comprehensive reference docs
-✅ Configurable WIP limits
-✅ Priority-based task selection
-✅ Git automation
-✅ Template-driven reports
+### Task Management
+✅ **Multi-format support**: `.specify/` (Speckit) and `specs/` directories
+✅ **Priority detection**: `P1/P2/P3` and `[P]` (Speckit) formats
+✅ **Recursive scanning**: Finds tasks at any depth
+✅ **Robust error handling** and logging
+✅ **CLI with verbose mode**
+
+### Project Context
+✅ **Automatic analysis**: Extracts tech stack, structure, dependencies
+✅ **Auto-update on changes**: Git hooks for continuous sync
+✅ **Multi-language support**: Python, JavaScript/TypeScript, Rust
+✅ **Comprehensive reports**: Markdown + JSON output
+
+### Planning
+✅ **Configurable WIP limits**
+✅ **Priority-based task selection**
+✅ **Multi-project balancing**
+✅ **Git automation**
+✅ **Template-driven reports**
 
 ## Quick Start
 
@@ -73,11 +84,23 @@ projects/
 
 See `projects/README.md` for more examples and best practices.
 
-### 4. Use the Skills
+### 4. Install Auto-Update Hooks
+
+```bash
+# Enable automatic project context updates
+bash scripts/install_hooks.sh
+```
+
+This installs git hooks that automatically update project contexts when you commit, pull, or switch branches.
+
+### 5. Use the Skills
 
 ```bash
 # Scan tasks across projects
 /ctx.scan
+
+# Analyze project structure and dependencies
+/ctx.analyze my-org/my-project
 
 # Generate daily plan
 /ctx.daily
