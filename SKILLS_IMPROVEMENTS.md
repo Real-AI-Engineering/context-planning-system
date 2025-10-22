@@ -2,7 +2,7 @@
 
 ## Overview
 
-Your context planning skills have been completely overhauled, translated to English, and enhanced with professional documentation, robust error handling, and comprehensive reference materials.
+Your context planning skills have been completely overhauled, translated to English, and enhanced with professional documentation, robust error handling, comprehensive reference materials, and **intelligent project context integration** for AI-assisted planning.
 
 ## Skills Improved
 
@@ -43,6 +43,46 @@ Your context planning skills have been completely overhauled, translated to Engl
 - ✅ Included troubleshooting guides
 
 **Package:** `ctx-planning.zip` (ready for distribution)
+
+### 3. Project Context Integration (NEW)
+**Purpose:** Enable AI assistants to make informed planning decisions with full project knowledge
+
+**Features:**
+- ✅ **Automatic project analysis** via `analyze_project.py`:
+  - Tech stack detection (languages, frameworks, dependencies)
+  - Directory structure mapping
+  - Entry point and CLI command discovery
+  - Test framework and coverage detection
+  - Documentation indexing
+  - Spec file cataloging (Speckit + context-planning)
+- ✅ **Auto-update system** with git hooks:
+  - `post-commit`: Updates changed projects after commits
+  - `post-merge`: Updates after git pull
+  - `post-checkout`: Updates when switching branches
+  - Detects added/updated/deleted projects
+  - Regenerates project INDEX automatically
+- ✅ **Enhanced daily planning templates**:
+  - Link tasks to project context reports
+  - Include project overview in daily plans
+  - Surface risks and considerations
+  - Provide TODO checklists before starting work
+- ✅ **Comprehensive documentation**:
+  - `docs/AUTO_UPDATE.md`: Git hooks and automation
+  - `docs/PROJECT_CONTEXT_INTEGRATION.md`: AI integration guide
+  - `templates/daily-with-context.md`: Enhanced plan template
+  - `examples/daily-plan-example.md`: Real-world example
+
+**Benefits for AI Assistants:**
+- 🤖 **Better prioritization**: Understands project complexity and dependencies
+- 🤖 **Risk awareness**: Knows about missing tests, external requirements
+- 🤖 **Faster onboarding**: No need to explore codebase from scratch
+- 🤖 **Informed estimates**: Can suggest timeboxes based on tech stack
+- 🤖 **Architecture awareness**: Understands how pieces fit together
+
+**Outputs:**
+- `reports/projects/*.md`: Human-readable project reports
+- `reports/projects/*.json`: Machine-readable project data
+- `reports/projects/INDEX.md`: Catalog of all projects
 
 ## Key Enhancements
 

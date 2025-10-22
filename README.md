@@ -249,11 +249,20 @@ ln -s $(pwd)/skills/ctx-planning ~/.claude/skills/ctx-planning
 
 ## Documentation
 
+### Core Documentation
 - **[SKILLS_IMPROVEMENTS.md](SKILLS_IMPROVEMENTS.md)**: Complete improvement summary
 - **[skills/ctx-collector/SKILL.md](skills/ctx-collector/SKILL.md)**: Task collector documentation
 - **[skills/ctx-planning/SKILL.md](skills/ctx-planning/SKILL.md)**: Planning skill documentation
 - **[skills/ctx-planning/references/workflows.md](skills/ctx-planning/references/workflows.md)**: Detailed algorithms
 - **[skills/ctx-planning/references/configuration.md](skills/ctx-planning/references/configuration.md)**: Configuration reference
+
+### Advanced Features
+- **[docs/AUTO_UPDATE.md](docs/AUTO_UPDATE.md)**: Automatic project context updates with git hooks
+- **[docs/PROJECT_CONTEXT_INTEGRATION.md](docs/PROJECT_CONTEXT_INTEGRATION.md)**: Integrating project context into daily planning
+
+### Templates & Examples
+- **[templates/daily-with-context.md](templates/daily-with-context.md)**: Enhanced daily plan template with project context
+- **[examples/daily-plan-example.md](examples/daily-plan-example.md)**: Example daily plan with full project integration
 
 ## Workflows
 
