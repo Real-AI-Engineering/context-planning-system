@@ -1,0 +1,297 @@
+# Context Planning System
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code](https://img.shields.io/badge/Claude-Code-purple)](https://claude.com/claude-code)
+[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/downloads/)
+
+Personal context management system with task aggregation and daily/weekly planning workflows powered by Claude Code skills.
+
+## Overview
+
+This system helps manage multiple projects through:
+- **Task Aggregation**: Scan Speckit-format tasks across repositories
+- **Daily Planning**: Generate focused daily plans with WIP limits
+- **Weekly Reviews**: Track progress toward monthly goals
+- **Automated Workflows**: Git integration for seamless tracking
+
+## Features
+
+✅ Professional English documentation
+✅ Robust error handling and logging
+✅ CLI with verbose mode
+✅ Comprehensive reference docs
+✅ Configurable WIP limits
+✅ Priority-based task selection
+✅ Git automation
+✅ Template-driven reports
+
+## Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/ai-engineering/context-planning-system.git
+cd context-planning-system
+```
+
+### 2. Configure Your Planning
+
+Edit `BaseContext.yaml`:
+
+```yaml
+wip_limits:
+  daily_tasks_max: 5
+  weekly_projects_max: 3
+
+goals:
+  month:
+    - "Your monthly goal 1"
+    - "Your monthly goal 2"
+```
+
+### 3. Set Up Projects
+
+Create your project structure:
+
+```bash
+projects/
+├── org-name/
+│   └── repo-name/
+│       └── specs/
+│           └── tasks.md
+```
+
+### 4. Use the Skills
+
+```bash
+# Scan tasks across projects
+/ctx.scan
+
+# Generate daily plan
+/ctx.daily
+
+# End of day update
+/ctx.eod
+
+# Weekly review
+/ctx.weekly
+```
+
+## Project Structure
+
+```
+context-planning-system/
+├── skills/              # Claude Code skills
+│   ├── ctx-collector/   # Task scanning and aggregation
+│   └── ctx-planning/    # Daily/weekly planning
+├── state/               # Generated state files (gitignored)
+│   ├── backlog.yaml     # Aggregated tasks
+│   └── carryover.yaml   # Carryover tasks
+├── reports/             # Generated reports (gitignored)
+│   ├── daily/           # Daily plans
+│   └── weekly/          # Weekly reviews
+├── templates/           # Report templates
+├── scripts/             # Automation scripts
+├── projects/            # Your projects (gitignored)
+└── BaseContext.yaml     # Configuration
+```
+
+## Skills
+
+### ctx-collector
+
+Scans Speckit task files across projects and generates unified backlog.
+
+**Features:**
+- Recursive task file discovery
+- Priority and ID extraction (`P1`, `P2`, `P3`, `T###`)
+- Robust error handling
+- CLI with verbose mode
+
+**Usage:**
+```bash
+# Via Claude Code
+/ctx.scan
+
+# Direct script execution
+python3 skills/ctx-collector/scripts/scan_tasks.py --verbose
+```
+
+**Task Format:**
+```markdown
+## Feature Name
+
+- [ ] T101 P1 Implement authentication
+- [ ] T102 P2 Add user profile page
+- [X] T103 P1 Fix login bug
+```
+
+### ctx-planning
+
+Generates daily and weekly planning reports with WIP limits and priority rules.
+
+**Features:**
+- Daily plan generation with WIP limits
+- End-of-day progress tracking
+- Weekly reviews with goal alignment
+- Monthly retrospectives
+- Configurable priorities and tie-breakers
+
+**Workflows:**
+- `/ctx.daily` - Generate today's plan
+- `/ctx.eod` - Close out the day
+- `/ctx.weekly` - Weekly review
+- `/ctx.monthly` - Monthly retrospective
+- `/ctx.update` - Update configuration
+
+## Configuration
+
+### BaseContext.yaml
+
+Complete configuration reference:
+
+```yaml
+version: 0.2
+timezone: "UTC"
+
+cadence:
+  weekly_review_day: "Monday"
+  monthly_cycle: "next-30-days"
+
+wip_limits:
+  daily_tasks_max: 5            # Max tasks per day
+  weekly_projects_max: 3        # Max concurrent projects
+
+prioritization:
+  order: ["P1", "P2", "P3"]     # High to low priority
+  tie_breakers:
+    - "unblocker_first"         # Tasks that unblock others
+    - "short_first"             # Quick wins
+
+goals:
+  month:
+    - "Launch MVP for project X"
+    - "Complete security audit"
+    - "Implement CI/CD pipeline"
+
+rules:
+  include_open_tasks_from:
+    - "tasks.md"
+    - "checklists/*.md"
+  task_id_pattern: "T\\d+"
+  priority_patterns: ["P1", "P2", "P3"]
+```
+
+See `skills/ctx-planning/references/configuration.md` for detailed documentation.
+
+## Installation Options
+
+### Option 1: Use from Repository (Recommended)
+
+Skills are already in the repository:
+
+```bash
+cd context-planning-system
+
+# Use skills directly
+/ctx.scan
+/ctx.daily
+```
+
+### Option 2: Install Globally
+
+Create symlinks to use from any directory:
+
+```bash
+ln -s $(pwd)/skills/ctx-collector ~/.claude/skills/ctx-collector
+ln -s $(pwd)/skills/ctx-planning ~/.claude/skills/ctx-planning
+```
+
+## Documentation
+
+- **[SKILLS_IMPROVEMENTS.md](SKILLS_IMPROVEMENTS.md)**: Complete improvement summary
+- **[skills/ctx-collector/SKILL.md](skills/ctx-collector/SKILL.md)**: Task collector documentation
+- **[skills/ctx-planning/SKILL.md](skills/ctx-planning/SKILL.md)**: Planning skill documentation
+- **[skills/ctx-planning/references/workflows.md](skills/ctx-planning/references/workflows.md)**: Detailed algorithms
+- **[skills/ctx-planning/references/configuration.md](skills/ctx-planning/references/configuration.md)**: Configuration reference
+
+## Workflows
+
+### Daily Planning Flow
+1. Load configuration from `BaseContext.yaml`
+2. Load backlog and carryover state
+3. Select tasks by priority with WIP limits
+4. Generate `reports/daily/YYYY-MM-DD.md`
+5. Commit and push changes (optional)
+
+### End-of-Day Flow
+1. Update daily report with progress
+2. Document decisions and insights
+3. Generate carryover for tomorrow
+4. Commit and push changes (optional)
+
+### Weekly Review Flow
+1. Aggregate achievements from daily reports
+2. Assess progress toward monthly goals
+3. Generate `reports/weekly/YYYY-WW.md`
+4. Commit and push changes (optional)
+
+## Task Format Reference
+
+### Checkbox Syntax
+
+```markdown
+- [ ] T101 P1 Task description (open task)
+- [X] T102 P2 Completed task (done)
+```
+
+### Priority Levels
+
+- **P1**: High priority (critical, blockers, urgent)
+- **P2**: Medium priority (normal development)
+- **P3**: Low priority (nice-to-have, tech debt)
+
+### Task IDs
+
+- Pattern: `T` followed by digits (e.g., `T1`, `T100`, `T999`)
+- Optional but recommended for tracking
+- Auto-generated hash if not provided
+
+## Requirements
+
+- Python 3.7+
+- Claude Code
+- Git (optional, for automation)
+- PyYAML (optional, JSON fallback available)
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test with `/ctx.scan` and `/ctx.daily`
+5. Submit a pull request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with [Claude Code](https://claude.com/claude-code)
+- Inspired by personal productivity systems and GTD methodology
+- Designed for Speckit-format task management
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/ai-engineering/context-planning-system/issues)
+- **Documentation**: See `skills/*/SKILL.md` files
+- **Examples**: Check `templates/` directory
+
+---
+
+**Status:** Active Development
+**Version:** 0.2
+**Last Updated:** 2025-10-22
