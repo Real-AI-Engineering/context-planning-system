@@ -30,7 +30,7 @@ This system helps manage multiple projects through:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/ai-engineering/context-planning-system.git
+git clone https://github.com/Real-AI-Engineering/context-planning-system.git
 cd context-planning-system
 ```
 
@@ -286,7 +286,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/ai-engineering/context-planning-system/issues)
+- **Issues**: [GitHub Issues](https://github.com/Real-AI-Engineering/context-planning-system/issues)
 - **Documentation**: See `skills/*/SKILL.md` files
 - **Examples**: Check `templates/` directory
 
