@@ -228,21 +228,41 @@ See `skills/ctx-planning/references/configuration.md` for detailed documentation
 
 ### Option 1: Use from Repository (Recommended)
 
-Skills are already in the repository:
+Skills and slash commands are already in the repository:
 
 ```bash
 cd context-planning-system
 
-# Use skills directly
+# Skills are available when working in this directory
 /ctx.scan
 /ctx.daily
 ```
 
+**Note:** Slash commands (`.claude/commands/*.md`) work automatically when in the repository directory.
+
 ### Option 2: Install Globally
 
-Create symlinks to use from any directory:
+Copy skills to your global Claude directory to use from anywhere:
 
 ```bash
+# Copy skills
+cp -r skills/ctx-collector ~/.claude/skills/
+cp -r skills/ctx-planning ~/.claude/skills/
+
+# Copy slash commands (optional)
+mkdir -p ~/.claude/commands
+cp .claude/commands/ctx.*.md ~/.claude/commands/
+```
+
+**Benefits:**
+- ✅ Use `/ctx.*` commands from any directory
+- ✅ Skills available in all Claude Code sessions
+- ✅ No need to cd into repository
+
+**Note:** After copying, update skills manually when repository changes, or use symlinks:
+
+```bash
+# Alternative: symlinks (auto-updates with repository)
 ln -s $(pwd)/skills/ctx-collector ~/.claude/skills/ctx-collector
 ln -s $(pwd)/skills/ctx-planning ~/.claude/skills/ctx-planning
 ```
