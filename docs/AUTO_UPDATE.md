@@ -161,7 +161,7 @@ bash scripts/update_project_contexts.sh manual
 ### Обновить один проект
 
 ```bash
-python3 skills/ctx-collector/scripts/analyze_project.py \
+python3 .claude/skills/ctx-collector/scripts/analyze_project.py \
   projects/forgequant/nt-playground \
   --output reports/projects/nt-playground.md
 ```
@@ -172,7 +172,7 @@ python3 skills/ctx-collector/scripts/analyze_project.py \
 for project in projects/*/*; do
   [ -d "$project" ] || continue
   name=$(basename "$project")
-  python3 skills/ctx-collector/scripts/analyze_project.py \
+  python3 .claude/skills/ctx-collector/scripts/analyze_project.py \
     "$project" \
     --output "reports/projects/$name.md"
 done
@@ -230,7 +230,7 @@ git log -1 --stat
 
 ```bash
 # Запустить анализ вручную с выводом ошибок
-python3 skills/ctx-collector/scripts/analyze_project.py \
+python3 .claude/skills/ctx-collector/scripts/analyze_project.py \
   projects/forgequant/problem-project \
   --output reports/projects/problem-project.md
 ```

@@ -183,7 +183,7 @@ class TaskScanner:
 ```
 
 Claude will:
-- Run `skills/ctx-collector/scripts/scan_tasks.py`
+- Run `.claude/skills/ctx-collector/scripts/scan_tasks.py`
 - Scan all `projects/*/*/specs/**/tasks.md` files
 - Generate `state/backlog.yaml`
 - Report statistics
@@ -233,17 +233,17 @@ Claude will:
 **Scan tasks with verbose output:**
 ```bash
 cd context
-python3 skills/ctx-collector/scripts/scan_tasks.py --verbose
+python3 .claude/skills/ctx-collector/scripts/scan_tasks.py --verbose
 ```
 
 **Custom output location:**
 ```bash
-python3 skills/ctx-collector/scripts/scan_tasks.py --output /tmp/backlog.yaml
+python3 .claude/skills/ctx-collector/scripts/scan_tasks.py --output /tmp/backlog.yaml
 ```
 
 **Get help:**
 ```bash
-python3 skills/ctx-collector/scripts/scan_tasks.py --help
+python3 .claude/skills/ctx-collector/scripts/scan_tasks.py --help
 ```
 
 ## File Structure

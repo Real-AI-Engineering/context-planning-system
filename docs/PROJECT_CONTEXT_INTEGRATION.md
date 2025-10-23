@@ -39,7 +39,7 @@ When you commit changes, git hooks automatically run `analyze_project.py`:
 ```bash
 # Triggered automatically by git hooks
 # Or run manually:
-python3 skills/ctx-collector/scripts/analyze_project.py \
+python3 .claude/skills/ctx-collector/scripts/analyze_project.py \
   projects/my-org/my-project \
   --output reports/projects/my-project.md
 ```
@@ -312,7 +312,7 @@ bash scripts/update_project_contexts.sh manual
 
 ```bash
 # Analyze specific project
-python3 skills/ctx-collector/scripts/analyze_project.py \
+python3 .claude/skills/ctx-collector/scripts/analyze_project.py \
   projects/my-org/my-project \
   --output reports/projects/my-project.md
 ```
@@ -329,8 +329,8 @@ Check relative path is correct:
 ## Further Reading
 
 - [AUTO_UPDATE.md](AUTO_UPDATE.md) - Automatic project context updates
-- [skills/ctx-collector/SKILL.md](../skills/ctx-collector/SKILL.md) - Task and project scanning
-- [skills/ctx-planning/SKILL.md](../skills/ctx-planning/SKILL.md) - Planning workflows
+- [.claude/skills/ctx-collector/SKILL.md](../.claude/skills/ctx-collector/SKILL.md) - Task and project scanning
+- [.claude/skills/ctx-planning/SKILL.md](../.claude/skills/ctx-planning/SKILL.md) - Planning workflows
 - [README.md](../README.md) - System overview
 
 ---

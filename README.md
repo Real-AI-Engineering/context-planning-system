@@ -154,7 +154,7 @@ Scans Speckit task files across projects and generates unified backlog.
 /ctx.scan
 
 # Direct script execution
-python3 skills/ctx-collector/scripts/scan_tasks.py --verbose
+python3 .claude/skills/ctx-collector/scripts/scan_tasks.py --verbose
 ```
 
 **Task Format:**
@@ -222,7 +222,7 @@ rules:
   priority_patterns: ["P1", "P2", "P3"]
 ```
 
-See `skills/ctx-planning/references/configuration.md` for detailed documentation.
+See `.claude/skills/ctx-planning/references/configuration.md` for detailed documentation.
 
 ## Installation Options
 
@@ -246,8 +246,8 @@ Copy skills to your global Claude directory to use from anywhere:
 
 ```bash
 # Copy skills
-cp -r skills/ctx-collector ~/.claude/skills/
-cp -r skills/ctx-planning ~/.claude/skills/
+cp -r .claude/skills/ctx-collector ~/.claude/skills/
+cp -r .claude/skills/ctx-planning ~/.claude/skills/
 
 # Copy slash commands (optional)
 mkdir -p ~/.claude/commands
@@ -263,18 +263,18 @@ cp .claude/commands/ctx.*.md ~/.claude/commands/
 
 ```bash
 # Alternative: symlinks (auto-updates with repository)
-ln -s $(pwd)/skills/ctx-collector ~/.claude/skills/ctx-collector
-ln -s $(pwd)/skills/ctx-planning ~/.claude/skills/ctx-planning
+ln -s $(pwd)/.claude/skills/ctx-collector ~/.claude/.claude/skills/ctx-collector
+ln -s $(pwd)/.claude/skills/ctx-planning ~/.claude/.claude/skills/ctx-planning
 ```
 
 ## Documentation
 
 ### Core Documentation
 - **[SKILLS_IMPROVEMENTS.md](SKILLS_IMPROVEMENTS.md)**: Complete improvement summary
-- **[skills/ctx-collector/SKILL.md](skills/ctx-collector/SKILL.md)**: Task collector documentation
-- **[skills/ctx-planning/SKILL.md](skills/ctx-planning/SKILL.md)**: Planning skill documentation
-- **[skills/ctx-planning/references/workflows.md](skills/ctx-planning/references/workflows.md)**: Detailed algorithms
-- **[skills/ctx-planning/references/configuration.md](skills/ctx-planning/references/configuration.md)**: Configuration reference
+- **[.claude/skills/ctx-collector/SKILL.md](.claude/skills/ctx-collector/SKILL.md)**: Task collector documentation
+- **[.claude/skills/ctx-planning/SKILL.md](.claude/skills/ctx-planning/SKILL.md)**: Planning skill documentation
+- **[.claude/skills/ctx-planning/references/workflows.md](.claude/skills/ctx-planning/references/workflows.md)**: Detailed algorithms
+- **[.claude/skills/ctx-planning/references/configuration.md](.claude/skills/ctx-planning/references/configuration.md)**: Configuration reference
 
 ### Advanced Features
 - **[docs/AUTO_UPDATE.md](docs/AUTO_UPDATE.md)**: Automatic project context updates with git hooks
